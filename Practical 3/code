@@ -1,0 +1,23 @@
+
+%{
+#include <stdio.h> //Piyush Chopade 25070521509
+int count = 0;
+%}
+
+%%
+^[Aa][a-zA-Z]*   { printf("Matched: %s\n", yytext); count++; }
+
+.|\n             ;
+%%
+
+int main()
+{
+    yylex();
+    printf("Number of words starting with 'A' or 'a': %d\n", count);
+    return 0;
+}
+
+int yywrap()
+{
+    return 1;
+}
