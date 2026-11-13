@@ -1,0 +1,24 @@
+%{
+#include <stdio.h>
+#include <stdlib.h>
+%}
+
+%%
+[0-9]+  {
+            unsigned long num = strtoul(yytext, NULL, 10);
+            printf("0x%lX", num);
+        }
+\n      { ECHO; }
+.       { ECHO; }
+%%
+
+int main(void)
+{
+    yylex();
+    return 0;
+}
+
+int yywrap(void)
+{
+    return 1;
+}
